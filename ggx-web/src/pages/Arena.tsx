@@ -64,8 +64,9 @@ export function Tournament() {
         </div>
       </section>
 
-      <div className="mx-auto grid max-w-[1400px] gap-10 px-4 pt-10 md:px-6 lg:grid-cols-[1.4fr_1fr]">
-        <div>
+      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-4 pt-10 md:px-6 lg:grid-cols-[1.4fr_1fr]">
+        {/* min-w-0: the scrollable bracket must not widen the page on phones */}
+        <div className="min-w-0">
           <dl className="grid grid-cols-2 gap-px border border-line bg-line sm:grid-cols-4">
             {[['Format', t.format], ['Slots left', `${left} of ${t.slots}`], ['Entry', t.entry], ['Prizes', t.prize]].map(([k, v]) => (
               <div key={k} className="bg-surface p-4"><dt className="text-xs uppercase tracking-wider text-muted">{k}</dt><dd className="mt-1 font-semibold">{v}</dd></div>

@@ -26,8 +26,8 @@ const SHOTS = [
   { name: 'item', path: '/item/navaja-knife-safari-mesh', w: 1440, h: 900 },
   { name: 'skinlab', path: '/skin-lab', w: 1440, h: 900 },
   { name: 'm-market', path: '/market?kind=cs2&sort=low', w: 390, h: 844, mobile: true },
-  { name: 'm-order', path: '/order/GGX-4821', w: 390, h: 844, mobile: true },
-  { name: 'm-pass', path: '/arena/fury-bgmi', w: 390, h: 844, mobile: true, scroll: 1150 },
+  { name: 'm-order', path: '/order/GGX-4821', w: 390, h: 844, mobile: true, focus: '.bg-white' },
+  { name: 'm-pass', path: '/arena/fury-bgmi', w: 390, h: 844, mobile: true, focus: 'aside' },
   { name: 'm-item', path: '/item/ps5-slim', w: 390, h: 844, mobile: true, scroll: 520 },
 ]
 
@@ -42,6 +42,11 @@ try {
       await page.setViewport({ width: s.w, height: s.h, deviceScaleFactor: 2, isMobile: !!s.mobile, hasTouch: !!s.mobile })
       await page.goto(BASE + s.path, { waitUntil: 'networkidle0', timeout: 60000 })
       if (s.scroll) await page.evaluate((y) => window.scrollTo(0, y), s.scroll)
+      if (s.focus) await page.evaluate((sel) => document.querySelector(sel)?.scrollIntoView({ block: 'center' }), s.focus)
+      if (s.mobile) {
+        const [sw, vw] = await page.evaluate(() => [document.documentElement.scrollWidth, innerWidth])
+        if (sw > vw) console.warn(`  ! ${s.name}: page is ${sw}px wide in a ${vw}px viewport (horizontal overflow)`)
+      }
       await page.waitForFunction(() => [...document.images].every((i) => i.complete), { timeout: 30000 }).catch(() => {})
       await sleep(2500) // entrance animations + lazy images
       await page.screenshot({ path: `${root}public/deck-shots/${s.name}.jpg`, type: 'jpeg', quality: 82 })

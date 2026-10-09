@@ -43,7 +43,7 @@ function Arrow({ style, flip = false, w = 220 }: { style?: CSSProperties; flip?:
 }
 
 function Note({ children, style, red = false, size = 34 }: { children: ReactNode; style?: CSSProperties; red?: boolean; size?: number }) {
-  return <div className={`hand absolute ${red ? 'text-red-hot' : 'text-fg'}`} style={{ fontSize: size, ...style }}>{children}</div>
+  return <div className={`hand absolute ${red ? 'text-red-text' : 'text-fg'}`} style={{ fontSize: size, ...style }}>{children}</div>
 }
 
 function Tape({ style }: { style?: CSSProperties }) {
@@ -103,8 +103,8 @@ const Kicker = ({ children }: { children: ReactNode }) => (
 function Cover() {
   return (
     <Slide n={1} label="Pitch" bare>
-      <Duo k="heroStage" className="scanlines inset-0" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--color-bg)_18%,transparent_75%)]" />
+      <Duo k="heroStage" className="scanlines inset-y-0 right-0 left-[840px]" />
+      <div className="absolute inset-y-0 left-[840px] w-[520px] bg-[linear-gradient(90deg,var(--color-bg),transparent)]" />
       <div className="absolute left-28 top-24">
         <div className="inline-flex items-center gap-3 bg-red px-4 py-2 text-[20px] font-bold uppercase tracking-[0.2em] text-ink"><span className="h-3 w-3 rounded-full bg-ink" />Live on campus</div>
         <div className="display mt-6 text-[400px] leading-[0.8]">GG<span className="glow-text text-red">X</span></div>
@@ -264,7 +264,7 @@ function Rent() {
         <div className="absolute left-[60px] right-[60px] top-[58px] border-t-[3px] border-dashed border-line-strong" />
         {steps.map(([I, t, d], i) => (
           <div key={t} className="relative w-[200px] text-center">
-            <div className={`mx-auto grid h-[116px] w-[116px] place-items-center border-2 ${i === 2 ? 'border-red bg-red text-ink shadow-[0_0_40px_-6px_var(--color-red)]' : 'border-line-strong bg-surface text-red-text'}`}><I size={52} /></div>
+            <div className={`mx-auto grid h-[116px] w-[116px] place-items-center border-2 ${i === 2 ? 'hot border-red bg-red text-ink' : 'border-line-strong bg-surface text-red-text'}`}><I size={52} /></div>
             <div className="mt-5 text-[28px] font-semibold">{t}</div><div className="text-[22px] text-muted">{d}</div>
           </div>
         ))}
@@ -272,8 +272,7 @@ function Rent() {
       <div className="absolute left-24 top-[720px] w-[1150px] text-[30px] leading-relaxed">
         <p><b className="tabular">₹350 × 3 days = ₹1,050.</b> Plus a <span className="hl">₹10,000 refundable deposit</span> for a new player. Trusted players (3+ clean trades, 90%+ recommended) pay half on most gear.</p>
       </div>
-      <Note red size={40} style={{ left: 520, top: 330, transform: 'rotate(-4deg)' }}>money moves only after this scan</Note>
-      <Arrow w={130} style={{ left: 640, top: 360, transform: 'rotate(70deg)' }} />
+      <Note red size={38} style={{ left: 780, top: 640, transform: 'rotate(-3deg)' }}>money moves only after this scan</Note>
       <Phone src={shot('m-order')} style={{ left: 1430, top: 110, width: 390 }} />
     </Slide>
   )
@@ -290,7 +289,7 @@ function SevenDay() {
           <div className="relative flex-1 border-y-2 border-red/60" style={{ background: 'repeating-linear-gradient(135deg, oklch(0.62 0.235 25 / 0.28) 0 14px, transparent 14px 28px)' }}>
             <div className="absolute inset-0 grid place-items-center text-[30px] font-semibold">Days 1 to 7: trade protection, reversible</div>
           </div>
-          <div className="grid w-[16%] place-items-center bg-red text-[30px] font-bold text-ink shadow-[0_0_50px_-8px_var(--color-red)]">Day 8</div>
+          <div className="hot grid w-[16%] place-items-center bg-red text-[30px] font-bold text-ink">Day 8</div>
         </div>
         <div className="mt-6 flex text-[24px] text-muted">
           <div className="w-[34%]">Buyer pays GGX. Seller sends the skin. Payment held.</div>
@@ -413,7 +412,7 @@ function Launch() {
         {phases.map(([n, t, d], i) => (
           <div key={n} className="relative flex gap-8 pb-8">
             {i < phases.length - 1 && <span className="absolute left-[27px] top-[62px] h-[calc(100%-56px)] w-[3px] bg-line-strong" />}
-            <span className={`grid h-[58px] w-[58px] shrink-0 place-items-center border-2 text-[28px] font-bold ${i === 1 ? 'border-red bg-red text-ink shadow-[0_0_30px_-4px_var(--color-red)]' : 'border-line-strong'}`}>{n}</span>
+            <span className={`grid h-[58px] w-[58px] shrink-0 place-items-center border-2 text-[28px] font-bold ${i === 1 ? 'hot border-red bg-red text-ink' : 'border-line-strong'}`}>{n}</span>
             <div><div className="text-[32px] font-semibold">{t}</div><div className="text-[24px] text-muted">{d}</div></div>
           </div>
         ))}
@@ -424,7 +423,7 @@ function Launch() {
           <li>500 verified gamers</li><li>50+ listings</li><li>30+ completed deals</li><li>under 5% disputes</li>
         </ul>
       </div>
-      <div className="absolute left-[1340px] top-[760px] w-[470px] border border-line bg-surface p-6">
+      <div className="absolute left-[1340px] top-[680px] w-[470px] border border-line bg-surface p-6">
         <div className="text-[20px] uppercase tracking-[0.18em] text-muted">North-star metric</div>
         <div className="mt-2 text-[34px] font-semibold">Weekly completed exchanges</div>
         <div className="text-[22px] text-muted">sales + rentals returned + tournament check-ins</div>
@@ -437,7 +436,7 @@ function Close() {
   return (
     <Slide n={14} label="Thank you" bare>
       <Duo k="crowd" className="inset-0" />
-      <div className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-bg)_8%,transparent_70%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(0deg,var(--color-bg)_30%,oklch(0.14_0.01_20/0.55)_65%,oklch(0.14_0.01_20/0.35))]" />
       <div className="absolute bottom-28 left-28">
         <div className="display text-[330px] leading-[0.8]">GG<span className="text-red glow-text">?</span></div>
         <p className="mt-8 max-w-[1100px] text-[44px] font-semibold">Let us run the GGX pilot at Esports Fury.</p>
