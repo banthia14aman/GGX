@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* GGX broadcast theme. Dark only: the product lives in hostel rooms at night.
+   Neutrals are tinted toward the brand red (hue 20). Contrast checked: body text 16.7:1,
+   muted 7.5:1, red text 6.5:1, ink-on-red buttons 5:1. */
+@theme {
+  --color-bg: oklch(0.14 0.01 20);
+  --color-surface: oklch(0.18 0.012 20);
+  --color-raised: oklch(0.22 0.014 20);
+  --color-line: oklch(0.32 0.016 20);
+  --color-line-strong: oklch(0.48 0.02 20);
+  --color-fg: oklch(0.96 0.006 20);
+  --color-muted: oklch(0.72 0.012 20);
+  --color-ink: oklch(0.12 0.01 20);
+  --color-red: oklch(0.62 0.235 25);
+  --color-red-hot: oklch(0.68 0.24 27);
+  --color-red-text: oklch(0.7 0.19 25);
+  --color-red-deep: oklch(0.32 0.12 25);
+  --color-ok: oklch(0.8 0.16 150);
+  --color-warn: oklch(0.83 0.15 80);
+
+  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-sans: "Geist Variable", system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html { color-scheme: dark; background: var(--color-bg); }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--color-red); color: var(--color-ink); }
+  :focus-visible { outline: 2px solid var(--color-red-hot); outline-offset: 2px; }
+  img { display: block; max-width: 100%; }
+  button { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+}
+
+@layer components {
+  /* Display type: condensed, uppercase, broadcast graphics package */
+  .display { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.01em; line-height: 0.88; font-weight: 900; }
+
+  /* Primary action: red plate, ink text, red glow */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    min-height: 44px; padding: 0 1.1rem; border-radius: 4px;
+    font-weight: 600; font-size: 0.9rem; letter-spacing: 0.01em;
+    transition: background-color 160ms var(--ease-out-expo), box-shadow 200ms var(--ease-out-expo), color 160ms, border-color 160ms;
+    border: 1px solid transparent; white-space: nowrap;
+  }
+  .btn-red { background: var(--color-red); color: var(--color-ink); box-shadow: 0 0 0 0 transparent; }
+  .btn-red:hover { background: var(--color-red-hot); box-shadow: 0 0 28px -6px var(--color-red), 0 0 2px var(--color-red-hot); }
+  .btn-red:disabled { background: var(--color-raised); color: var(--color-muted); box-shadow: none; }
+  .btn-line { border-color: var(--color-line-strong); color: var(--color-fg); background: transparent; }
+  .btn-line:hover { border-color: var(--color-red-text); color: var(--color-red-text); }
+  .btn-ghost { color: var(--color-muted); background: transparent; }
+  .btn-ghost:hover { color: var(--color-fg); background: var(--color-raised); }
+
+  .field {
+    min-height: 44px; width: 100%; padding: 0 0.85rem; border-radius: 4px;
+    background: var(--color-raised); border: 1px solid var(--color-line-strong); color: var(--color-fg);
+    font: inherit;
+  }
+  .field:focus { border-color: var(--color-red-hot); outline: none; box-shadow: 0 0 0 3px oklch(0.62 0.235 25 / 0.25); }
+  .label { display: block; font-size: 0.8rem; color: var(--color-muted); margin-bottom: 0.35rem; }
+
+  /* HUD frame: four corner brackets, the broadcast overlay signature */
+  .hud { position: relative; }
+  .hud::before, .hud::after {
+    content: ""; position: absolute; width: 14px; height: 14px; pointer-events: none;
+    border-color: var(--hud-color, var(--color-red)); transition: width 200ms var(--ease-out-expo), height 200ms var(--ease-out-expo);
+  }
+  .hud::before { top: -1px; left: -1px; border-top: 2px solid; border-left: 2px solid; }
+  .hud::after { bottom: -1px; right: -1px; border-bottom: 2px solid; border-right: 2px solid; }
+  .hud:hover::before, .hud:hover::after { width: 22px; height: 22px; }
+
+  /* Lower-third plate with a cut corner */
+  .plate { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%); }
+  .tab-cut { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 0 100%); }
+
+  /* Red broadcast duotone; true colour on hover */
+  .duo { position: relative; overflow: hidden; background: var(--color-ink); isolation: isolate; }
+  .duo img { filter: grayscale(1) contrast(1.15) brightness(0.85); transition: filter 400ms var(--ease-out-expo), transform 600ms var(--ease-out-expo); }
+  .duo::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: multiply;
+    background: linear-gradient(160deg, oklch(0.62 0.235 25), oklch(0.3 0.12 25));
+    transition: opacity 400ms var(--ease-out-expo);
+  }
+  .duo-hover:hover img { filter: none; transform: scale(1.03); }
+  .duo-hover:hover::after { opacity: 0; }
+
+  .scanlines { position: relative; }
+  .scanlines::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    background: repeating-linear-gradient(0deg, oklch(0 0 0 / 0.22) 0 1px, transparent 1px 3px);
+  }
+
+  .live-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--color-red-hot); box-shadow: 0 0 10px 2px var(--color-red); animation: pulse 1.6s ease-out infinite; }
+  .glow-text { text-shadow: 0 0 18px oklch(0.62 0.235 25 / 0.75), 0 0 2px oklch(0.68 0.24 27 / 0.9); }
+
+  .ticker { display: flex; width: max-content; animation: ticker 60s linear infinite; }
+  .ticker:hover { animation-play-state: paused; }
+
+  .tabular { font-variant-numeric: tabular-nums; }
+  .noscroll::-webkit-scrollbar { display: none; }
+  .noscroll { scrollbar-width: none; }
+}
+
+@keyframes pulse { 0% { opacity: 1; } 70% { opacity: 0.35; } 100% { opacity: 1; } }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  .ticker { animation: none; }
+}

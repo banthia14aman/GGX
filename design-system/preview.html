@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GGX Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--color-background);color:var(--color-foreground);font:var(--primitive-fontSize-base)/1.5 var(--primitive-font-body);padding:var(--primitive-spacing-8) var(--primitive-spacing-4)}
+main{max-width:960px;margin:0 auto}
+h1,h2{font-family:var(--primitive-font-display);letter-spacing:.01em;margin:0}
+h1{font-size:var(--primitive-fontSize-3xl)}
+h2{font-size:var(--primitive-fontSize-xl);margin:var(--primitive-spacing-12) 0 var(--primitive-spacing-4)}
+.mut{color:var(--color-muted-foreground);font-size:var(--primitive-fontSize-sm)}
+.row{display:flex;flex-wrap:wrap;gap:var(--primitive-spacing-3);align-items:center}
+.sw{width:132px;border:1px solid var(--color-border);border-radius:var(--card-radius);overflow:hidden;background:var(--color-surface)}
+.sw div{height:56px}.sw p{margin:0;padding:var(--primitive-spacing-2);font-size:var(--primitive-fontSize-xs)}
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--card-radius);padding:var(--card-padding)}
+.btn{height:var(--button-height);padding:0 var(--button-padding-x);border-radius:var(--button-radius);border:1px solid transparent;font:600 var(--primitive-fontSize-sm) var(--primitive-font-body);cursor:pointer;transition:background var(--primitive-duration-fast)}
+.btn-primary{background:var(--button-bg);color:var(--button-fg)}
+.btn-primary:hover{background:var(--button-hover-bg)}
+.btn-arena{background:var(--color-arena);color:var(--color-arena-foreground)}
+.btn-ghost{background:none;color:var(--color-foreground);border-color:var(--color-border)}
+.btn-danger{background:none;color:var(--color-danger);border-color:var(--color-danger)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,.input:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.input{height:var(--input-height);border-radius:var(--input-radius);border:1px solid var(--color-border);background:var(--color-surface-raised);color:var(--color-foreground);padding:0 var(--primitive-spacing-3);font:inherit;width:260px;max-width:100%}
+.chip{border:1px solid var(--color-border);border-radius:var(--chip-radius);padding:2px 10px;font-size:var(--primitive-fontSize-xs)}
+.chip.on{border-color:var(--color-link);color:var(--color-link)}
+.pill{border-radius:var(--chip-radius);padding:2px 10px;font-size:var(--primitive-fontSize-xs);font-weight:600;border:1px solid currentColor}
+.mono{font-family:var(--primitive-font-mono)}
+.toggle{float:right}
+</style>
+</head>
+<body>
+<button class="btn btn-ghost toggle" onclick="document.documentElement.classList.toggle('dark')">Toggle light / dark</button>
+<main>
+<h1>GGX Design System</h1>
+<p class="mut">Dark-first: GGX is used mostly in the evening and at night. Volt (lime) is the action colour, violet marks Arena/events. All text pairs pass WCAG AA in both themes.</p>
+
+<h2>Colour</h2>
+<div class="row">
+ <div class="sw"><div style="background:var(--color-primary)"></div><p>primary · volt</p></div>
+ <div class="sw"><div style="background:var(--color-arena)"></div><p>arena · violet</p></div>
+ <div class="sw"><div style="background:var(--color-background)"></div><p>background</p></div>
+ <div class="sw"><div style="background:var(--color-surface)"></div><p>surface</p></div>
+ <div class="sw"><div style="background:var(--color-surface-raised)"></div><p>surface-raised</p></div>
+ <div class="sw"><div style="background:var(--color-success)"></div><p>success</p></div>
+ <div class="sw"><div style="background:var(--color-warning)"></div><p>warning</p></div>
+ <div class="sw"><div style="background:var(--color-danger)"></div><p>danger</p></div>
+</div>
+
+<h2>Type</h2>
+<div class="card">
+ <div style="font:700 var(--primitive-fontSize-3xl) var(--primitive-font-display)">Play. Trade. Rent. Compete.</div>
+ <div style="font:600 var(--primitive-fontSize-xl) var(--primitive-font-display)">Esports Fury: BGMI · 18 / 32 slots</div>
+ <p>Body text in Inter. A verified campus gaming economy for IIT Delhi students.</p>
+ <p class="mut">Muted helper text: deposit refunded 48 hours after return.</p>
+ <p class="mono">Handover code 482 913 · Order GGX-1042</p>
+</div>
+
+<h2>Buttons</h2>
+<div class="row">
+ <button class="btn btn-primary">Pay with UPI</button>
+ <button class="btn btn-arena">Register squad</button>
+ <button class="btn btn-ghost">Card / other</button>
+ <button class="btn btn-danger">Raise dispute</button>
+ <button class="btn btn-primary" disabled>Sold out</button>
+</div>
+
+<h2>Inputs and chips</h2>
+<div class="row">
+ <input class="input" placeholder="Search gear…">
+ <span class="chip on">Rent</span><span class="chip">Buy</span><span class="chip on">Mobile</span><span class="chip">Consoles</span>
+</div>
+
+<h2>Order status pills</h2>
+<div class="row">
+ <span class="pill" style="color:var(--color-muted-foreground)">Pending payment</span>
+ <span class="pill" style="color:var(--color-link)">Paid · held</span>
+ <span class="pill" style="color:var(--color-arena-text)">Active</span>
+ <span class="pill" style="color:var(--color-warning)">Overdue</span>
+ <span class="pill" style="color:var(--color-link)">Returned</span>
+ <span class="pill" style="color:var(--color-success)">Completed</span>
+ <span class="pill" style="color:var(--color-danger)">Disputed</span>
+ <span class="pill" style="color:var(--color-muted-foreground)">Cancelled</span>
+</div>
+
+<h2>Card</h2>
+<div class="card" style="max-width:340px">
+ <div class="row" style="justify-content:space-between"><b>PS5 + 2 controllers</b><span class="pill" style="color:var(--color-success)">92% recommended</span></div>
+ <p class="mut">₹350/day · Aravali · tier-2 owner</p>
+ <p style="color:var(--color-success);font-size:var(--primitive-fontSize-sm)">✓ GGX Guarantee: full refund within 48h if not as described</p>
+ <button class="btn btn-primary" style="width:100%">Rent</button>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GGX Wireframes</title>
+<style>
+:root{--bg:#f4f4f5;--fg:#18181b;--mut:#71717a;--line:#d4d4d8;--card:#fff;--acc:#4f46e5;--ok:#15803d;--warn:#b45309}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0f12;--fg:#f4f4f5;--mut:#a1a1aa;--line:#3f3f46;--card:#18181b;--acc:#818cf8;--ok:#4ade80;--warn:#fbbf24}}
+:root[data-theme="dark"]{--bg:#0f0f12;--fg:#f4f4f5;--mut:#a1a1aa;--line:#3f3f46;--card:#18181b;--acc:#818cf8;--ok:#4ade80;--warn:#fbbf24}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.4 system-ui,-apple-system,sans-serif;padding:24px 16px}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--mut);margin:0 0 24px;max-width:70ch}
+.grid{display:flex;flex-wrap:wrap;gap:28px}
+figure{margin:0;width:280px;max-width:100%}
+figcaption{font-size:12px;color:var(--mut);margin-top:8px}
+figcaption b{color:var(--fg)}
+.phone{border:2px solid var(--line);border-radius:28px;background:var(--card);height:540px;display:flex;flex-direction:column;overflow:hidden}
+.top{padding:14px 16px 8px;font-weight:700;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.top small{font-weight:400;color:var(--mut)}
+.body{flex:1;padding:12px;overflow:hidden;display:flex;flex-direction:column;gap:8px}
+.tabs{display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:8px 0 12px;font-size:11px;color:var(--mut)}
+.tabs .on{color:var(--acc);font-weight:700}
+.box{border:1px solid var(--line);border-radius:10px;padding:10px}
+.row{display:flex;gap:8px;align-items:center}
+.img{background:repeating-linear-gradient(45deg,var(--line) 0 1px,transparent 1px 8px);border:1px solid var(--line);border-radius:8px;min-height:44px;min-width:44px}
+.btn{background:var(--acc);color:#fff;border-radius:10px;padding:10px;text-align:center;font-weight:600}
+.btn.ghost{background:none;color:var(--acc);border:1px solid var(--acc)}
+.chip{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:11px;margin:0 4px 4px 0}
+.chip.on{border-color:var(--acc);color:var(--acc)}
+.mut{color:var(--mut);font-size:12px}
+.ok{color:var(--ok)} .warn{color:var(--warn)}
+.qr{width:150px;height:150px;margin:6px auto;background:
+ conic-gradient(var(--fg) 25%,transparent 0 50%,var(--fg) 0 75%,transparent 0) 0 0/30px 30px;border:8px solid var(--card);outline:2px solid var(--fg)}
+.line{display:flex;justify-content:space-between}
+.steps{display:flex;gap:4px}.steps i{flex:1;height:4px;border-radius:2px;background:var(--line)}.steps i.on{background:var(--acc)}
+.scan{flex:1;border:2px dashed var(--acc);border-radius:12px;display:grid;place-items:center;color:var(--acc)}
+</style>
+</head>
+<body>
+<h1>GGX: low-fidelity wireframes</h1>
+<p class="sub">Phase C, Functional Design. Ten mobile screens covering the three hero flows (rent gear, enter a tournament, find teammates). The desktop layout uses the same screens with the bottom tabs moved to a left sidebar. Screen IDs (S0x) match <code>05_Functional_Design.md</code>. All names are fictional demo data.</p>
+
+<div class="grid">
+
+<figure><div class="phone">
+ <div class="top">GGX <small>Hostel: Aravali · 12 credits</small></div>
+ <div class="body">
+  <div class="box"><b>GGX Fest Week</b> <span class="mut">· 3 days left</span><div class="mut">Free BGMI cup + listing drive</div></div>
+  <div class="mut">For you</div>
+  <div class="box row"><div class="img"></div><div><b>Wishlist match</b><div class="mut">DualSense controller · ₹1,400 · Aravali</div></div></div>
+  <div class="box row"><div class="img"></div><div><b>3 players want a Valorant squad</b><div class="mut">Gold–Plat · tonight</div></div></div>
+  <div class="box row"><div class="img"></div><div><b>Esports Fury qualifiers open</b><div class="mut">32 slots · free · sponsored</div></div></div>
+  <div class="box"><b>Your rental</b><div class="mut warn">PS5 due back tomorrow 6 PM</div></div>
+ </div>
+ <div class="tabs"><span class="on">Home</span><span>Market</span><span>Squad</span><span>Arena</span><span>Me</span></div>
+</div><figcaption><b>S04 Home feed.</b> Wishlist alerts, LFG matches, events, active rentals. FR-80.</figcaption></figure>
+
+<figure><div class="phone">
+ <div class="top">Market <small>+ List</small></div>
+ <div class="body">
+  <div class="box mut">Search gear…</div>
+  <div><span class="chip on">Rent</span><span class="chip">Buy</span><span class="chip on">Mobile</span><span class="chip">Controllers</span><span class="chip">Consoles</span><span class="chip">Under ₹2K</span></div>
+  <div class="box row"><div class="img"></div><div style="flex:1"><b>Phone cooler fan</b><div class="mut">₹40/day · Nilgiri · 96% recommended</div></div></div>
+  <div class="box row"><div class="img"></div><div style="flex:1"><b>Trigger set (BGMI)</b><div class="mut">₹150 buy · Kumaon · 100%</div></div></div>
+  <div class="box row"><div class="img"></div><div style="flex:1"><b>PS5 + 2 controllers</b><div class="mut">₹350/day · Aravali · 92%</div></div></div>
+  <div class="box row"><div class="img"></div><div style="flex:1"><b>HyperX headset</b><div class="mut">₹60/day · Shivalik · new owner</div></div></div>
+  <div class="mut">☆ Save this search to your wishlist</div>
+ </div>
+ <div class="tabs"><span>Home</span><span class="on">Market</span><span>Squad</span><span>Arena</span><span>Me</span></div>
+</div><figcaption><b>S05 Market.</b> Filters, % recommended, wishlist save. FR-11.</figcaption></figure>
+
+<figure><div class="phone">
+ <div class="top">← PS5 + 2 controllers <small>Rent</small></div>
+ <div class="body">
+  <div class="img" style="min-height:120px"></div>
+  <div class="line"><b>₹350 / day</b><span class="mut">Item value ₹45,000</span></div>
+  <div class="mut">Owner: Arjun S. · 92% recommended · 14 rentals · tier 2</div>
+  <div class="box"><div class="mut">Pick dates</div><div class="line"><span>Fri 10</span><span>→</span><span>Sun 12</span><span class="mut">3 days</span></div><div class="mut">Grey dates already booked</div></div>
+  <div class="box"><div class="line"><span>Rent</span><span>₹1,050</span></div><div class="line mut"><span>Refundable deposit (new user)</span><span>₹10,000</span></div></div>
+  <div class="mut ok">✓ GGX Guarantee: not as described? Full refund within 48h.</div>
+  <div class="btn">Continue to checkout</div>
+ </div>
+</div><figcaption><b>S06 Listing detail.</b> Calendar, deposit preview, reputation, Guarantee. FR-12, FR-13.</figcaption></figure>
+
+<figure><div class="phone">
+ <div class="top">← Checkout</div>
+ <div class="body">
+  <div class="steps"><i class="on"></i><i class="on"></i><i></i></div>
+  <div class="box"><b>PS5 + 2 controllers</b><div class="mut">Fri 10 → Sun 12 · handover at Aravali gate</div></div>
+  <div class="box"><div class="line"><span>Rent</span><span>₹1,050</span></div>
+   <div class="line"><span>Deposit (refunded on return)</span><span>₹10,000</span></div>
+   <div class="line mut"><span>Credits: 12 available (max 10% off)</span><span>Use →</span></div>
+   <hr style="border:0;border-top:1px solid var(--line)"><div class="line"><b>You pay</b><b>₹11,050</b></div></div>
+  <div class="mut">Payment is held by GGX and released to the owner only after you scan the handover QR.</div>
+  <div class="btn">Pay with UPI</div>
+  <div class="btn ghost">Card / other</div>
+  <div class="mut">Razorpay · test mode</div>
+ </div>
+</div><figcaption><b>S08 Checkout.</b> Held payment, deposit, capped credits. FR-30, FR-31, FR-41.</figcaption></figure>
+
+<figure><div class="phone">
+ <div class="top">← Order #GGX-1042 <small>Paid · held</small></div>
+ <div class="body">
+  <div class="mut">✓ Paid · <b>● Handover</b> · ○ Active · ○ Returned · ○ Completed</div>
+  <div class="box"><b>Owner's view</b><div class="mut">1. Upload "before" photos (3/3 ✓)</div><div class="mut">2. Show this QR to the renter</div>
+   <div class="qr"></div><div class="mut" style="text-align:center">or code <b>482 913</b></div></div>
+  <div class="mut">The renter scans it to confirm they received the item. Nobody can confirm their own handover.</div>
+ </div>
+</div><figcaption><b>S09 Order: handover.</b> Photos first, then the receiving party scans. FR-20, FR-21.</figcaption></figure>
+
+<figure><div class="phone">
+ <div class="top">Squad <small>+ Post LFG</small></div>
+ <div class="body">
+  <div class="box"><b>Your post</b><div class="mut">Valorant · Gold 2 · Duelist · tonight 11 PM–1 AM · competitive</div></div>
+  <div class="mut">Matches (same game, rank ±1 tier, overlapping time)</div>
+  <div class="box row"><div class="img" style="border-radius:50%"></div><div style="flex:1"><b>Riya K.</b><div class="mut">Gold 3 · Controller · 4 tournaments</div></div><span class="chip on">Invite</span></div>
+  <div class="box row"><div class="img" style="border-radius:50%"></div><div style="flex:1"><b>Dev M.</b><div class="mut">Plat 1 · Initiator · caster</div></div><span class="chip on">Invite</span></div>
+  <div class="box row"><div class="img" style="border-radius:50%"></div><div style="flex:1"><b>Kabir P.</b><div class="mut">Gold 1 · Sentinel</div></div><span class="chip on">Invite</span></div>
+  <div class="mut">Squad chat happens on your Discord / WhatsApp link.</div>
+ </div>
+ <div class="tabs"><span>Home</span><span>Market</span><span class="on">Squad</span><span>Arena</span><span>Me</span></div>
+</div><figcaption><b>S10 Squad match list.</b> FR-50, FR-51; chat links out (FR-53).</figcaption></figure>
+
+<figure><div class="phone">
+ <div class="top">← Esports Fury: BGMI <small>Open</small></div>
+ <div class="body">
+  <div class="img" style="min-height:70px"></div>
+  <div class="mut">Sponsored by <b>DemoGear</b> (fictional)</div>
+  <div class="box"><div class="line"><span>Format</span><span>Squads of 4</span></div><div class="line"><span>Slots</span><span>18 / 32</span></div><div class="line"><span>When</span><span>Sat 18, 6 PM · LHC</span></div><div class="line"><span>Entry</span><span class="ok">Free</span></div><div class="line"><span>Prizes</span><span>Sponsor gear</span></div></div>
+  <div class="mut">Prizes are sponsor-funded. No stakes or wagers (Online Gaming Act 2025).</div>
+  <div class="btn">Register my squad</div>
+  <div class="btn ghost">View bracket</div>
+ </div>
+ <div class="tabs"><span>Home</span><span>Market</span><span>Squad</span><span class="on">Arena</span><span>Me</span></div>
+</div><figcaption><b>S14 Tournament detail.</b> Free by default, sponsor slot. FR-60, FR-62, FR-71.</figcaption></figure>
+
+<figure><div class="phone">
+ <div class="top">Pass wallet</div>
+ <div class="body">
+  <div class="box" style="text-align:center"><b>Esports Fury: BGMI</b><div class="mut">Sat 18 · 6 PM · LHC · Team "Night Owls"</div><div class="qr"></div><div class="mut">Single-use · show at entry</div></div>
+  <div class="box row"><div style="flex:1"><b>Valorant watch party</b><div class="mut">Sun 26 · SAC</div></div><span class="chip">Open</span></div>
+ </div>
+ <div class="tabs"><span>Home</span><span>Market</span><span>Squad</span><span>Arena</span><span class="on">Me</span></div>
+</div><figcaption><b>S16 Pass wallet.</b> One QR per player, works once. FR-63.</figcaption></figure>
+
+<figure><div class="phone">
+ <div class="top">Gamer Passport <small>Edit</small></div>
+ <div class="body">
+  <div class="row"><div class="img" style="border-radius:50%;min-width:56px;min-height:56px"></div><div><b>Arjun S.</b> <span class="chip on">Verified IITD</span><div class="mut">Aravali · since Aug 2026</div></div></div>
+  <div class="box"><div class="line"><span>Owner</span><span class="ok">92% recommended</span></div><div class="line"><span>Renter</span><span class="ok">100%</span></div><div class="line"><span>On-time returns</span><span>14 / 14</span></div><div class="line"><span>Tier</span><span>2 (lower deposits)</span></div></div>
+  <div class="box"><div class="mut">Games</div>Valorant · Plat 2 · Duelist<br>EA FC · Div 3</div>
+  <div class="box"><div class="line"><b>Credits</b><b>12</b></div><div class="mut">+3 cast a match · +3 on-time rental · −5 Neon frame</div></div>
+  <div><span class="chip">Organizer</span><span class="chip">Top lender</span><span class="chip">Neon frame</span></div>
+ </div>
+ <div class="tabs"><span>Home</span><span>Market</span><span>Squad</span><span>Arena</span><span class="on">Me</span></div>
+</div><figcaption><b>S17/S18 Passport + credits.</b> Reputation by role, cosmetic spend. FR-03, FR-43.</figcaption></figure>
+
+<figure><div class="phone">
+ <div class="top">← Check-in <small>Organizer</small></div>
+ <div class="body">
+  <div class="line"><b>Esports Fury: BGMI</b><span class="mut">61 / 72 in</span></div>
+  <div class="scan">Point camera at a pass QR</div>
+  <div class="box ok">✓ Riya K. · Night Owls · checked in 5:48 PM</div>
+  <div class="box warn">✗ Pass already used at 5:41 PM</div>
+  <div class="btn ghost">Enter 6-digit code instead</div>
+ </div>
+</div><figcaption><b>S19 Organizer check-in.</b> Single-use scan, attendance count. FR-63, FR-70.</figcaption></figure>
+
+</div>
+</body>
+</html>
