@@ -158,11 +158,12 @@ function SkinLabTeaser() {
 
 export const CRIMSON = 'repeating-linear-gradient(45deg, oklch(0.45 0.2 25) 0 6px, oklch(0.32 0.15 25) 6px 12px)'
 
-export function SkinnedPS5({ pattern, className = '' }: { pattern: string; className?: string }) {
+export function SkinnedPS5({ pattern, className = 'relative' }: { pattern: string; className?: string }) {
   const src = 'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png/960px-PlayStation_5_and_DualSense_with_transparent_background.png'
   const mask = { WebkitMaskImage: `url(${src})`, maskImage: `url(${src})`, WebkitMaskSize: 'contain', maskSize: 'contain', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskPosition: 'center' } as const
   return (
-    <div className={`relative ${className}`}>
+    // className must set positioning ('relative' or 'absolute'); both create the containing block
+    <div className={className}>
       <img src={src} alt="PlayStation 5 with DualSense, previewed with a vinyl wrap" className="absolute inset-0 h-full w-full object-contain" crossOrigin="anonymous" />
       <div className="absolute inset-0 mix-blend-multiply transition-[background] duration-500" style={{ background: pattern, ...mask }} />
     </div>

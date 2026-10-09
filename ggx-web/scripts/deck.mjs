@@ -10,6 +10,7 @@ const BASE = process.env.GGX_URL ?? 'http://localhost:5173'
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 const root = fileURLToPath(new URL('..', import.meta.url))
 const mode = process.argv[2] ?? 'pdf'
+const only = process.argv[3]
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
 // Demo state so order and pass screens have something real to show
@@ -37,12 +38,13 @@ try {
     mkdirSync(root + 'public/deck-shots', { recursive: true })
     await page.goto(BASE, { waitUntil: 'networkidle0' })
     await page.evaluate((s) => localStorage.setItem('ggx-demo-v1', JSON.stringify(s)), state)
-    for (const s of SHOTS) {
+    for (const s of SHOTS.filter((x) => !only || x.name === only)) {
       await page.setViewport({ width: s.w, height: s.h, deviceScaleFactor: 2, isMobile: !!s.mobile, hasTouch: !!s.mobile })
       await page.goto(BASE + s.path, { waitUntil: 'networkidle0', timeout: 60000 })
       if (s.scroll) await page.evaluate((y) => window.scrollTo(0, y), s.scroll)
+      await page.waitForFunction(() => [...document.images].every((i) => i.complete), { timeout: 30000 }).catch(() => {})
       await sleep(2500) // entrance animations + lazy images
-      await page.screenshot({ path: `${root}public/deck-shots/${s.name}.png` })
+      await page.screenshot({ path: `${root}public/deck-shots/${s.name}.jpg`, type: 'jpeg', quality: 82 })
       console.log('shot', s.name)
     }
   } else {

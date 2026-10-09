@@ -4,6 +4,8 @@ Front-end prototype of the GGX campus gaming marketplace for the Mobile Commerce
 
 Everything is clickable: browse, filter, open listings, rent with dates and deposits, check out, track orders, register for tournaments, invite teammates, list your own gear. **Payments, Steam trades and emails are simulated.** There is no backend; demo state is saved in the browser (reset it from the Me page).
 
+**Live demo:** https://banthia14aman.github.io/GGX/ (deployed by GitHub Actions on every push to `main`).
+
 ## Run it
 
 ```bash
@@ -24,6 +26,20 @@ Then open http://localhost:5173. For a production build, run `npm run build`; th
 4. **Skin Lab**: paint wraps onto a real PS5 photo.
 5. **Arena → Esports Fury**: register a squad and get a QR pass.
 6. **Sell**: try listing "Valorant account" to see it blocked (no account trading).
+
+## Pitch deck
+
+The deck is a second page of this app (`deck.html`, `src/deck/`), so it shares the website's theme and data. With the dev server running:
+
+```bash
+node scripts/deck.mjs shots
+```
+
+```bash
+node scripts/deck.mjs pdf
+```
+
+The first command retakes the website screenshots used in the slides. The second writes `GGX_Pitch_Deck.pdf` to the project root (needs Google Chrome installed).
 
 ## Data and credits
 

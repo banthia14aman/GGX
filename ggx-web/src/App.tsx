@@ -39,7 +39,7 @@ export default function App() {
   const [cartOpen, setCartOpen] = useState(false)
   return (
     <StoreProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
         <ScrollTop />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-red focus:px-3 focus:py-2 focus:text-ink">Skip to content</a>
         <TopBar onCart={() => setCartOpen(true)} />

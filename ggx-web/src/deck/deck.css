@@ -1,0 +1,65 @@
+/* GGX pitch deck: 1920x1080 slides, printed one per PDF page.
+   Hand-made layer (marker, tape, polaroids, notes) sits on the website's broadcast theme. */
+@page { size: 1920px 1080px; margin: 0; }
+
+html, body { width: 1920px; background: var(--color-bg); }
+body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+.slide {
+  position: relative; width: 1920px; height: 1080px; overflow: hidden;
+  background: var(--color-bg); break-after: page; page-break-after: always;
+}
+@media screen { .slide { margin-bottom: 24px; } }
+
+/* film grain so flat fills feel printed. A small PNG tile, not an SVG filter: filters rasterise the whole page in PDF */
+.slide::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 50;
+  background: url("/deck-shots/grain.png") repeat; background-size: 160px 160px;
+}
+
+.hand { font-family: 'Kalam', cursive; font-weight: 700; line-height: 1.15; }
+
+/* tape strip with torn ends */
+.tape {
+  position: absolute; width: 150px; height: 38px; z-index: 5;
+  background: oklch(0.9 0.03 80 / 0.62);
+  clip-path: polygon(2% 10%, 8% 0, 15% 12%, 22% 2%, 100% 0, 97% 18%, 100% 40%, 96% 62%, 100% 85%, 97% 100%, 0 100%, 4% 80%, 0 55%, 3% 30%);
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.2);
+}
+
+.polaroid {
+  position: absolute; background: oklch(0.95 0.008 80); padding: 14px 14px 56px;
+  box-shadow: 0 18px 40px -12px oklch(0 0 0 / 0.7), 0 2px 4px oklch(0 0 0 / 0.4);
+}
+.polaroid img { width: 100%; height: 100%; object-fit: cover; }
+.polaroid figcaption { position: absolute; left: 0; right: 0; bottom: 12px; text-align: center; color: oklch(0.25 0.02 20); font-size: 26px; }
+
+.sticky {
+  position: absolute; background: oklch(0.86 0.13 88); color: oklch(0.22 0.02 60); padding: 26px 28px;
+  box-shadow: 0 22px 30px -18px oklch(0 0 0 / 0.75), inset 0 -18px 30px -24px oklch(0.4 0.1 70 / 0.5);
+}
+
+.stamp {
+  position: absolute; display: grid; place-items: center; text-align: center; border-radius: 999px;
+  border: 4px solid var(--color-red-hot); color: var(--color-red-hot); outline: 2px solid var(--color-red-hot); outline-offset: 6px;
+  font-family: var(--font-display); text-transform: uppercase; font-weight: 900; letter-spacing: 0.04em; line-height: 0.95;
+}
+
+.hl { background: linear-gradient(100deg, transparent 2%, oklch(0.62 0.235 25 / 0.38) 4%, oklch(0.62 0.235 25 / 0.3) 96%, transparent 98%); padding: 0 0.12em; border-radius: 4px; }
+
+/* receipt with zigzag torn bottom */
+.receipt {
+  position: absolute; background: oklch(0.95 0.008 80); color: oklch(0.2 0.01 20); font-family: var(--font-mono);
+  padding: 36px 40px 56px; box-shadow: 0 30px 50px -20px oklch(0 0 0 / 0.8);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), 96% 100%, 92% calc(100% - 16px), 88% 100%, 84% calc(100% - 16px), 80% 100%, 76% calc(100% - 16px), 72% 100%, 68% calc(100% - 16px), 64% 100%, 60% calc(100% - 16px), 56% 100%, 52% calc(100% - 16px), 48% 100%, 44% calc(100% - 16px), 40% 100%, 36% calc(100% - 16px), 32% 100%, 28% calc(100% - 16px), 24% 100%, 20% calc(100% - 16px), 16% 100%, 12% calc(100% - 16px), 8% 100%, 4% calc(100% - 16px), 0 100%);
+}
+
+.browser { position: absolute; border-radius: 14px; overflow: hidden; border: 1px solid var(--color-line-strong); background: var(--color-ink); box-shadow: 0 40px 80px -30px oklch(0 0 0 / 0.9), 0 0 60px -20px oklch(0.62 0.235 25 / 0.35); }
+.browser .bar { height: 44px; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: var(--color-raised); border-bottom: 1px solid var(--color-line); }
+.browser .bar i { width: 12px; height: 12px; border-radius: 99px; background: var(--color-line-strong); }
+.browser .bar span { margin-left: 18px; padding: 4px 16px; border-radius: 99px; background: var(--color-ink); color: var(--color-muted); font-size: 15px; }
+.browser img { width: 100%; display: block; }
+
+.phone { position: absolute; border-radius: 54px; padding: 12px; background: oklch(0.09 0.005 20); border: 2px solid var(--color-line-strong); box-shadow: 0 40px 80px -30px oklch(0 0 0 / 0.9), 0 0 70px -25px oklch(0.62 0.235 25 / 0.45); }
+.phone img { border-radius: 42px; display: block; width: 100%; }
+.phone::before { content: ""; position: absolute; top: 24px; left: 50%; width: 110px; height: 30px; margin-left: -55px; border-radius: 99px; background: oklch(0.05 0 0); z-index: 2; }
